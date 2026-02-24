@@ -1,5 +1,7 @@
 import numpy as np
 
+from scipy.optimize import root_scalar
+
 def chr_angle(n, _gamma=100):
   # n - refractive index of media
   # _gamma - Lorentz factor
@@ -25,3 +27,10 @@ def refr_ind(lmbd):
   eps = 1 + 0.6961663 * lmbd**2 / (lmbd**2 - 0.0684043**2) + 0.4079426 * lmbd**2 / (lmbd**2 - 0.1162414**2) + 0.8974794 * lmbd**2 / (lmbd**2 - 9.896161**2) 
   n = np.sqrt(eps) # refractive index
   return n
+
+def peak_lmbd_on_cr_angle(theta_cr, _n2=1, _obs_angle=0.97, _gamma=100):
+  beta = np.sqrt(1 - 1/_gamma**2)
+  min_func1 = lambda n1: np.arcsin(_n2 * np.sin(_obs_angle - theta_cr) / n1) - np.arccos(1 / (n1 * beta)) - theta_cr
+  sol = root_scalar(min_func1(n1), bracket=[0.0, 2], method='brentq')  
+  
+  
