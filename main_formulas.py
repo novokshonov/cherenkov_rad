@@ -15,4 +15,6 @@ def chr_angle_vac(n1, _n2=1, _theta_cr=np.pi/4, _gamma=100):
   # _gamma - Lorentz factor
   beta = np.sqrt(1 - 1/_gamma**2) # reduced velocity
   theta_ch = np.arccos(1 / (n * beta)) # ChR angle - angle between the particle velocity ang the ChR
-  alpha = 
+  alpha2 = np.arcsin(np.sin(theta_ch - _theta_cr) * n1) # Angle between the ChR after crossing the boundary and the normal to the crystal/target surface [rad]
+  chr_angle_vac = alpha2 + _theta_cr # Angle between the particle velocity and the ChR after crossing the boundary [rad]
+  return chr_angle_vac
