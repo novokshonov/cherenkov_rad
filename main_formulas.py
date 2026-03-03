@@ -29,7 +29,9 @@ def refr_ind(lmbd):
   n = np.sqrt(eps) # refractive index
   return n
 
-def peak_lmbd_on_cr_angle(theta_cr, _n2=1, _obs_angle=0.97, _gamma=100):
+def wvl_peak_pos(theta_cr, _n2=1, _theta_obs=0.97, _gamma=100):
+  # The function gives position of the spectral peak at given theta_cr and theta_obs
+  # theta_cr and theta_obs are shown in 
   beta = np.sqrt(1 - 1/_gamma**2)
   min_func1 = lambda n1: np.arcsin(_n2 * np.sin(_obs_angle - theta_cr) / n1) - np.arccos(1 / (n1 * beta)) - theta_cr
   sol1 = root_scalar(min_func1(n1), bracket=[0.0, 2], method='brentq')
