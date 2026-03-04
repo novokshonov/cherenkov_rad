@@ -37,7 +37,7 @@ def refr_ind(lmbd):
 
 
 
-def wvl_peak_pos(_theta_cr=0.3 _theta_obs=0.97, _gamma=100, _n2=1):
+def wvl_peak_pos(_theta_cr=0.3, _theta_obs=0.97, _gamma=100, _n2=1):
   # The function finds position of the spectral peak [nm] at given theta_cr and _theta_obs
   # _theta_cr and _theta_obs are shown in Fig.1 (schemes.pdf)
   # _n2 are refractive index ouside the crystal
